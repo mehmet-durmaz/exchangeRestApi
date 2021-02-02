@@ -1,6 +1,7 @@
 const amount = document.getElementById("amount");
 const firstCurrency = document.getElementById("firstCurrency");
 const secondCurrency = document.getElementById("secondCurrency");
+const currency = new Currency();
 
 
 eventListeners();
@@ -18,5 +19,7 @@ function eventListeners(){
 }
 
 function exchangeCurreny(){
-    console.log("event oluştu");
+   currency.exchange()
+   .then(data => console.log(data))
+   .catch(err => console.log(err));
 }
