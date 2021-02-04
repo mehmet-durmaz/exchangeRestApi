@@ -1,25 +1,30 @@
-const amount = document.getElementById("amount");
-const firstCurrency = document.getElementById("firstCurrency");
-const secondCurrency = document.getElementById("secondCurrency");
-const currency = new Currency();
+const amountElement = document.getElementById("amount");
+const firstSelect = document.getElementById("firstCurrency");
+const secondSelect = document.getElementById("secondCurrency");
+const currency = new Currency("USD","TRY");
 
 
 eventListeners();
 
 function eventListeners(){
 
-    amount.addEventListener("input",exchangeCurreny);
+    amountElement.addEventListener("input",exchangeCurreny);
     
-    firstCurrency.onchange = function(){
+    firstSelect.onchange = function(){
+        
+        currency.changeFirstCurrrency(firstSelect.options[firstSelect.selectedIndex].textcontent);
 
     }
-    secondCurrency.onchange = function(){
+    secondSelect.onchange = function(){
 
+        currency.changeSecondCurrency(secondSelect.options[secondSelect.selectedIndex].textContent);
     }
 }
 
 function exchangeCurreny(){
-   currency.exchange()
+    currency.changeAmount(amountElement.value);
+   
+    currency.exchange()
    .then(data => console.log(data))
    .catch(err => console.log(err));
 }
